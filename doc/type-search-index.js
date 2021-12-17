@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"fr.diginamic.jpa","l":"App"},{"p":"fr.diginamic.jpa.model","l":"Client"},{"p":"fr.diginamic.jpa.model","l":"Emprunt"},{"p":"fr.diginamic.jpa.model","l":"Livre"},{"p":"fr.diginamic.jpa","l":"TestBiblio"}];updateSearchResults();

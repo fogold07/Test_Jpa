@@ -1,11 +1,9 @@
 package fr.diginamic.jpa.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "CLIENT")
@@ -20,11 +18,21 @@ public class Client {
 	@Column(name = "PRENOM", length = 50)
 	private String prenom;
 	
+	@OneToMany(mappedBy = "clientEmp")
+	private Set<Emprunt> emprunts;
+	
 	public Client() {
-		
+		emprunts = new HashSet<>();
+	}
+	
+	public Set<Emprunt> getEmprunts() {
+		return emprunts;
 	}
 
-	
+	public void setEmprunts(Set<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
+
 	public Client(String nom, String prenom) {
 		super();
 		this.nom = nom;
