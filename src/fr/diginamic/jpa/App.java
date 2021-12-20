@@ -38,7 +38,7 @@ public class App {
 
 	}
 
-	/** Méthode qui met à jour un livre en base de données.
+	/** Mï¿½thode qui met ï¿½ jour un livre en base de donnï¿½es.
 	 * @param em as EntityManager
 	 */
 	private static void tp02Update(EntityManager em) {
@@ -59,7 +59,7 @@ public class App {
 		
 	}
 
-	/** Méthode qui insert un nouveau livre en base de données.
+	/** Mï¿½thode qui insert un nouveau livre en base de donnï¿½es.
 	 * @param em as EntityManager
 	 */
 	private static void tp02Insert(EntityManager em) {
@@ -76,7 +76,7 @@ public class App {
 		em.getTransaction().commit();
 	}
 
-	/** Méthode qui renvoie le titre et l'auteur d'un livre en base de données.
+	/** Mï¿½thode qui renvoie le titre et l'auteur d'un livre en base de donnï¿½es.
 	 * @param em as EntityManager
 	 */
 	private static void tp02Read(EntityManager em) {
@@ -88,9 +88,9 @@ public class App {
 		
 	}
 	
-	/** Méthode qui utlise une requete JPQL pour extraire de la Bdd un livre en fonction de son titre
+	/** Mï¿½thode qui utlise une requete JPQL pour extraire de la Bdd un livre en fonction de son titre
 	 * @param em as EntityManager
-	 * @param titreFind as String (titre à rechercher)
+	 * @param titreFind as String (titre ï¿½ rechercher)
 	 */
 	private static void tp02RqtJpqlTitre(EntityManager em, String titreFind) {
 		//Requete JPQL : 
@@ -102,9 +102,9 @@ public class App {
 		System.out.println(li);
 	}
 
-	/** Méthode qui utilise une requete JPQL pour extraire de la Bdd un livre en fonction de son auteur
+	/** Mï¿½thode qui utilise une requete JPQL pour extraire de la Bdd un livre en fonction de son auteur
 	 * @param em as EntityManager
-	 * @param auteurFind as String (auteur à rechercher)
+	 * @param auteurFind as String (auteur ï¿½ rechercher)
 	 */
 	private static void tp02RqtJpqlAuteur(EntityManager em, String auteurFind) {
 		System.out.println("TP 02 - JPQL Auteur :");
@@ -115,7 +115,7 @@ public class App {
 	}
 	
 	
-	/** Méthode qui supprime un livre de la BdD.
+	/** Mï¿½thode qui supprime un livre de la BdD.
 	 * @param em as EntityManager
 	 */
 	private static void tp02Delete(EntityManager em) {
@@ -132,7 +132,7 @@ public class App {
 		
 	}
 	
-	/** Méthode qui utilise une requete JPQL pour afficher la paire titre-auteur de tous les livres
+	/** Mï¿½thode qui utilise une requete JPQL pour afficher la paire titre-auteur de tous les livres
 	 * @param em as EntityManager
 	 */
 	private static void tp02FindAll(EntityManager em) {
@@ -151,7 +151,7 @@ public class App {
 	}
 
 	
-	/** Méthode qui implémente le TP01 sur les bases du CRUD en JPA.
+	/** Mï¿½thode qui implï¿½mente le TP01 sur les bases du CRUD en JPA.
 	 * 
 	 */
 	public static void tp01() {
@@ -185,7 +185,7 @@ public class App {
 		artUpt.setPrix(29.99);
 		em.merge(artUpt);
 		em.getTransaction().commit();
-		//System.out.println("id créé: "+ id);
+		//System.out.println("id crï¿½ï¿½: "+ id);
 		*/
 	}
 }
