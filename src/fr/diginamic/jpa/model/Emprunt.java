@@ -1,13 +1,10 @@
 package fr.diginamic.jpa.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "EMPRUNT")
@@ -16,31 +13,55 @@ public class Emprunt {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_DEBUT")
 	private Date date_debut;
 	
 	@Column(name="DELAI", nullable = true)
 	private int delai;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_FIN", nullable = true)
 	private Date date_fin;
 	
-	@Column(name="ID_CLIENT")
-	private int id_client;
+	@ManyToOne
+	@JoinColumn(name="ID_CLIENT")
+	private Client clientEmp;
+	
+	@ManyToMany
+	@JoinTable(name = "COMPO",
+			   joinColumns = @JoinColumn(name="ID_EMP", referencedColumnName = "ID"),
+			   inverseJoinColumns = @JoinColumn(name="ID_LIV", referencedColumnName = "ID")
+			)
+	private Set<Livre> empLivres;
 	
 	public Emprunt() {
-		// TODO Auto-generated constructor stub
+		empLivres = new HashSet<>();
 	}
 	
 	
-	public Emprunt(Date date_debut, int delai, Date date_fin, int id_client) {
-		super();
-		this.date_debut = date_debut;
-		this.delai = delai;
-		this.date_fin = date_fin;
-		this.id_client = id_client;
+
+	public Set<Livre> getEmpLivres() {
+		return empLivres;
 	}
 
+
+
+	public void setEmpLivres(Set<Livre> empLivres) {
+		this.empLivres = empLivres;
+	}
+
+
+
+	public Client getClientEmp() {
+		return clientEmp;
+	}
+
+
+
+	public void setClientEmp(Client clientEmp) {
+		this.clientEmp = clientEmp;
+	}
 
 
 
@@ -60,10 +81,6 @@ public class Emprunt {
 		return date_fin;
 	}
 
-	public int getId_client() {
-		return id_client;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -80,8 +97,13 @@ public class Emprunt {
 		this.date_fin = date_fin;
 	}
 
-	public void setId_client(int id_client) {
-		this.id_client = id_client;
+
+
+	@Override
+	public String toString() {
+		return "Emprunt [id=" + id + ", date_debut=" + date_debut + ", delai=" + delai + ", date_fin=" + date_fin + "]";
 	}
+
+
 
 }

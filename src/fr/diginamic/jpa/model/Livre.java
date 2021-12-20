@@ -1,11 +1,10 @@
 package fr.diginamic.jpa.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "LIVRE")
@@ -21,8 +20,19 @@ public class Livre {
 	@Column(name = "AUTEUR", length = 50)
 	private String auteur;
 	
+	@ManyToMany(mappedBy = "empLivres")
+	private Set<Emprunt> livEmprunts;
+	
 	public Livre() {
-		// TODO Auto-generated constructor stub
+		livEmprunts = new HashSet<>();
+	}
+
+	public Set<Emprunt> getLivEmprunts() {
+		return livEmprunts;
+	}
+
+	public void setLivEmprunts(Set<Emprunt> livEmprunts) {
+		this.livEmprunts = livEmprunts;
 	}
 
 	public int getId() {
