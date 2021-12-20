@@ -8,7 +8,7 @@ import fr.diginamic.jpa.model.Client;
 import fr.diginamic.jpa.model.Emprunt;
 
 /**
- * Classe qui permet de tester les requêtes de la BdD biblio
+ * Classe qui permet de tester les requetes de la BdD biblio
  * 
  * @author Christian I
  *
@@ -40,7 +40,8 @@ public class TestBiblio {
 
 
 
-	/** Méthode qui permet d'extraire un emprunt et tous ses livres associés.
+	/** 
+	 * Methode qui permet d'extraire un emprunt et tous ses livres associes.
 	 * @param em as EntityManager
 	 * @param idEmprunt as int
 	 */
@@ -58,7 +59,8 @@ public class TestBiblio {
 	}
 	
 
-	/** Méthode qui permet d'extraire tous les emprunts d'un client donné.
+	/** 
+	 * Methode qui permet d'extraire tous les emprunts d'un client donne.
 	 * @param em as EntityManager
 	 * @param idClient as int
 	 */

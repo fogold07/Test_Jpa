@@ -76,7 +76,7 @@ public class App {
 		em.getTransaction().commit();
 	}
 
-	/** M�thode qui renvoie le titre et l'auteur d'un livre en base de donn�es.
+	/** M�thode qui renvoie le titre et l'auteur d'un livre en base de donnees.
 	 * @param em as EntityManager
 	 */
 	private static void tp02Read(EntityManager em) {
@@ -90,7 +90,7 @@ public class App {
 	
 	/** M�thode qui utlise une requete JPQL pour extraire de la Bdd un livre en fonction de son titre
 	 * @param em as EntityManager
-	 * @param titreFind as String (titre � rechercher)
+	 * @param titreFind as String (titre a rechercher)
 	 */
 	private static void tp02RqtJpqlTitre(EntityManager em, String titreFind) {
 		//Requete JPQL : 
