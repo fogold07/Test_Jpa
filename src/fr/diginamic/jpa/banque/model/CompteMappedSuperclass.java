@@ -9,12 +9,12 @@ import javax.persistence.*;
 /*
  * Relatif au TP04
  * 
- * */
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="COMPTE")
-public class Compte {
+*/
+
+@MappedSuperclass
+public class CompteMappedSuperclass {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,7 +35,8 @@ public class Compte {
 			)
 	private Set<Client> cpteClients;
 	
-	public Compte() {
+	public CompteMappedSuperclass() {
+
 		cpteClients = new HashSet<>();
 	}
 

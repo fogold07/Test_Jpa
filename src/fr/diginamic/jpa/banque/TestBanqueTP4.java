@@ -1,16 +1,11 @@
 package fr.diginamic.jpa.banque;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import fr.diginamic.jpa.banque.model.Adresse;
-import fr.diginamic.jpa.banque.model.Banque;
 import fr.diginamic.jpa.banque.model.Client;
+import fr.diginamic.jpa.banque.model.Compte;
 
 
 public class TestBanqueTP4 {
@@ -24,10 +19,15 @@ public class TestBanqueTP4 {
 			em = efm.createEntityManager();
 			
 			em.getTransaction().begin();
-			/*
+			/* CREATE CLIENT - ADRESSE - BANQUE
 			Client cl1 = new Client();
 			Adresse adr1 = new Adresse();
 			Banque bq1 = new Banque();
+			
+			// pour la création de la date
+			//LocalDate.of(1987, Month.APRIL,01));
+			GregorianCalendar d = new GregorianCalendar(1978, Calendar.MAY, 11);
+			Date dob = d.getTime();
 			
 			adr1.setNumero(24);
 			adr1.setRue("Pierre Breton");
@@ -35,7 +35,7 @@ public class TestBanqueTP4 {
 			adr1.setVille("Versailles");
 			
 			bq1.setNom("CLC");
-						
+			cl.setDateNaissance(dob);			
 			cl1.setNom("Osborn");
 			cl1.setPrenom("Damien");
 			cl1.setAdresse(adr1);
@@ -45,18 +45,19 @@ public class TestBanqueTP4 {
 			
 			em.persist(cl1);
 			*/
-			Client cl = em.find(Client.class, 1);
 			
-			GregorianCalendar d = new GregorianCalendar(1986, Calendar.FEBRUARY, 18);
+			//CREATE COMPTE
 			
-			Date dob = d.getTime();
-			
-			//System.out.println(dob);		
-			cl.setDateNaissance(dob);
-			em.merge(cl);
-			
+			Compte cp = new Compte();
+			Client c = em.find(Client.class, 1);
+			if(c!=null) {
+				cp.getCpteClients().add(c);
+				cp.setNumero("00124589");
+				cp.setSolde(2500.50);
+				em.persist(cp);
+			}
+				
 			em.getTransaction().commit();
-
 			em.close();
 		}
 

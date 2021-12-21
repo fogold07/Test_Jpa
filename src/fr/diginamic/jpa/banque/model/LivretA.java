@@ -3,10 +3,10 @@ package fr.diginamic.jpa.banque.model;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("LA")
+@Table(name="LIVRET_A")
 public class LivretA extends Compte {
 
-	@Column(name="TAUX")
+	@Column(name="TAUX", nullable=false)
 	private Double taux; 
 	
 	public LivretA() {
@@ -23,7 +23,8 @@ public class LivretA extends Compte {
 
 	@Override
 	public String toString() {
-		return "LivretA [taux=" + taux + "]";
+		String cptInfo = "n°: "+ getNumero() +", solde: "+getSolde()+" €";
+		return "LivretA ["+ cptInfo +", taux:" + taux + "]";
 	}
 
 }

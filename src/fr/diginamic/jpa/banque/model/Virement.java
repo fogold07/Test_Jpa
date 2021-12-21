@@ -3,9 +3,10 @@ package fr.diginamic.jpa.banque.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="VIREMENT")
 public class Virement extends Operation {
 
-	@Column(name="BENEFICIAIRE")
+	@Column(name="BENEFICIAIRE", length = 25)
 	private String beneficiaire;
 	
 	public Virement() {

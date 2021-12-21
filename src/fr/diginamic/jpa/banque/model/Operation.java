@@ -1,36 +1,42 @@
 package fr.diginamic.jpa.banque.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name="OPERATION")
-//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Operation {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Temporal(TemporalType.DATE)
+
 	@Column(name="DATE")
-	private Date date;
+	private LocalDateTime date;
 	
 	@Column(name="MONTANT")
 	private Double montant;
 	
-	@Column(name="MOTIF")
+	@Column(name="MOTIF", length = 25)
 	private String motif;
 	
 	@ManyToOne
 	@JoinColumn(name="ID_COMPTE")
 	private Compte opCompte;
+	
 		
 	public Operation() {
 	}
 
-	public Date getDate() {
+	public int getId() {
+		return id;
+	}
+
+	public LocalDateTime getDate() {
 		return date;
 	}
 
@@ -46,7 +52,11 @@ public class Operation {
 		return opCompte;
 	}
 
-	public void setDate(Date date) {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
@@ -61,5 +71,7 @@ public class Operation {
 	public void setOpCompte(Compte opCompte) {
 		this.opCompte = opCompte;
 	}
+
+	
 
 }

@@ -1,10 +1,9 @@
 package fr.diginamic.jpa.banque.model;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="CLIENT")
@@ -20,9 +19,8 @@ public class Client {
 	@Column(name="PRENOM")
 	private String prenom; 
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_NAISSANCE")
-	private Date dateNaissance;
+	private LocalDate dateNaissance;
 	
 	@Embedded
 	private Adresse adresse;
@@ -32,11 +30,11 @@ public class Client {
 	@JoinColumn(name="ID_BANQUE")
 	private Banque banqueClient;
 	
-	@ManyToMany(mappedBy= "cpteClients")
-	private Set<Compte> clientCptes;
+	// MappedBy dangereux!!!
+
 	
 	public Client() {
-		clientCptes = new HashSet<>();
+
 	}
 
 	public int getId() {
@@ -51,12 +49,16 @@ public class Client {
 		return prenom;
 	}
 
-	public Date getDateNaissance() {
+	public Banque getBanqueClient() {
+		return banqueClient;
+	}
+
+	public LocalDate getDateNaissance() {
 		return dateNaissance;
 	}
 
-	public Banque getBanqueClient() {
-		return banqueClient;
+	public void setDateNaissance(LocalDate dateNaissance) {
+		this.dateNaissance = dateNaissance;
 	}
 
 	public Adresse getAdresse() {
@@ -75,9 +77,6 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
 
 	public void setBanqueClient(Banque banqueClient) {
 		this.banqueClient = banqueClient;
@@ -85,14 +84,6 @@ public class Client {
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
-	}
-
-	public Set<Compte> getClientCptes() {
-		return clientCptes;
-	}
-
-	public void setClientCptes(Set<Compte> clientCptes) {
-		this.clientCptes = clientCptes;
 	}
 
 }

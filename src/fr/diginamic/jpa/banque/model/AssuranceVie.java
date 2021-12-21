@@ -1,43 +1,55 @@
 package fr.diginamic.jpa.banque.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.*;
 
+
 @Entity
-@DiscriminatorValue("AV")
+@Table(name="ASSURANCE_VIE")
 public class AssuranceVie extends Compte {
 
+	/*
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATE_FIN")
+	@Column(name="DATE_FIN", nullable=false)
 	private Date dateFin;
+	*/
 	
-	@Column(name="TAUX")
+	@Column(name="DATE_FIN", nullable=false)
+	private LocalDate dateFin;
+	
+	@Column(name="TAUX", nullable=false)
 	private Double taux;
 	
 	public AssuranceVie() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Date getDateFin() {
+
+	public LocalDate getDateFin() {
 		return dateFin;
 	}
+
 
 	public Double getTaux() {
 		return taux;
 	}
 
-	public void setDateFin(Date dateFin) {
+
+	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
+
 
 	public void setTaux(Double taux) {
 		this.taux = taux;
 	}
 
+
 	@Override
 	public String toString() {
-		return "AssuranceVie [dateFin=" + dateFin + ", taux=" + taux + "]";
+		String cptInfo = "n°: "+ getNumero() +", solde: "+getSolde()+" €";
+		return "AssuranceVie ["+cptInfo+", date_Fin: " + dateFin + ", taux: " + taux+ "]";
 	}
 
 }

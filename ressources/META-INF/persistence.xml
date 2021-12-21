@@ -15,7 +15,7 @@
 			<property name="javax.persistence.jdbc.user" value="usr01" />
 			<property name="javax.persistence.jdbc.password" value="usr01" />
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.MySQLDialect" />
+				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
@@ -34,7 +34,7 @@
 			<property name="javax.persistence.jdbc.password"
 				value="1234" />
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.MySQLDialect" />
+				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
@@ -48,6 +48,10 @@
 		<class>fr.diginamic.jpa.banque.model.Client</class>
 		<class>fr.diginamic.jpa.banque.model.Compte</class>
 		<class>fr.diginamic.jpa.banque.model.Operation</class>
+		<class>fr.diginamic.jpa.banque.model.LivretA</class>
+		<class>fr.diginamic.jpa.banque.model.AssuranceVie</class>
+		<class>fr.diginamic.jpa.banque.model.CompteReel</class>
+		<class>fr.diginamic.jpa.banque.model.Virement</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
@@ -69,7 +73,7 @@
 			<property name="javax.persistence.jdbc.user" value="usr01" />
 			<property name="javax.persistence.jdbc.password" value="usr01" />
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.MySQLDialect" />
+				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 
 			<!-- Affichage des requêtes SQL -->
 			<property name="hibernate.show_sql" value="true" />
