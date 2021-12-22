@@ -10,6 +10,7 @@ public interface ClientService {
 	
 	Adresse creerAdresse(int num, String rue, int cp, String ville);
 	
-	void creerClient(EntityManager em, int idBanque ,String nom, String prenom, LocalDate dateNaissance, Adresse adr);
+	void creerClient(EntityManager em, int idBanque , String nom, String prenom, LocalDate dateNaissance, Adresse adr);
+	//obj type client et obj banque
 	
 }

@@ -25,6 +25,11 @@
 	<persistence-unit name="bddBIBLIO"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>fr.diginamic.jpa.biblio.model.Client</class>
+		<class>fr.diginamic.jpa.biblio.model.Emprunt</class>
+		<class>fr.diginamic.jpa.biblio.model.Livre</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.mariadb.jdbc.Driver" />

@@ -8,6 +8,11 @@ import fr.diginamic.jpa.banque.model.Client;
 import fr.diginamic.jpa.banque.model.Compte;
 
 
+/**
+ * Classe d'execution du TP4.
+ * @author Christian Ingold
+ *
+ */
 public class TestBanqueTP4 {
 
 	public static void main(String[] args) {
@@ -67,7 +72,7 @@ public class TestBanqueTP4 {
     		if(efm != null) efm.close();
     	}
 		
-		//Adresse adr = new Adresse();
+	
 
 	}
 

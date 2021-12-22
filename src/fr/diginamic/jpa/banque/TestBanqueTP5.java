@@ -18,6 +18,11 @@ import fr.diginamic.jpa.banque.model.Operation;
 import fr.diginamic.jpa.banque.model.Virement;
 
 
+/**
+ * Classe qui execute le TP5
+ * @author Christian Ingold
+ *
+ */
 public class TestBanqueTP5 {
 
 	public static void main(String[] args) {
@@ -124,6 +129,8 @@ public class TestBanqueTP5 {
 	 * @param montant
 	 * @param motif
 	 */
+	//new Operation(date, montant, motif) --> fait sauter op.setter stdr
+	//creerOperation(em, idCpt, new operation(date, montant, motif))
 	private static void creerOperation(EntityManager em, int idCpt, LocalDateTime date, Double montant, String motif) {
 		em.getTransaction().begin();
 		Compte cp = em.find(Compte.class, idCpt);
