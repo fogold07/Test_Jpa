@@ -16,6 +16,8 @@ import javax.persistence.*;
 @Table(name="COMPTE")
 public class Compte {
 
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -37,6 +39,12 @@ public class Compte {
 	
 	public Compte() {
 		cpteClients = new HashSet<>();
+	}
+
+	public Compte(String numero, Double solde) {
+		this();
+		this.numero = numero;
+		this.solde = solde;
 	}
 
 	public int getId() {
@@ -73,5 +81,9 @@ public class Compte {
 		this.cpteClients = cpteClients;
 	}
 
+	@Override
+	public String toString() {
+		return "Compte [id=" + id + ", numero=" + numero + ", solde=" + solde + "]";
+	}
 	
 }

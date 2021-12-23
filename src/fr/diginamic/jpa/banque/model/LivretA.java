@@ -13,6 +13,11 @@ public class LivretA extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 
+	public LivretA(Double taux) {
+		super();
+		this.taux = taux;
+	}
+
 	public Double getTaux() {
 		return taux;
 	}

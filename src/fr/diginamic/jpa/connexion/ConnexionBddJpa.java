@@ -1,4 +1,4 @@
-package fr.diginamic.jpa.biblio.connexion;
+package fr.diginamic.jpa.connexion;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

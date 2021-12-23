@@ -23,6 +23,16 @@ public class Adresse implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public Adresse(int numero, String rue, int codePostal, String ville) {
+		super();
+		this.numero = numero;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+
+
 	public int getNumero() {
 		return numero;
 	}

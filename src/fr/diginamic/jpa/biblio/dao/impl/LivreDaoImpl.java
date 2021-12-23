@@ -15,7 +15,7 @@ import fr.diginamic.jpa.biblio.model.Livre;
  * @author Christian Ingold
  *
  */
-public class LivreServiceDao implements LivreDao {
+public class LivreDaoImpl implements LivreDao {
 
 	/**
 	 * Méthode qui permet d'afficher le titre et l'auteur d'un livre en fonction de
@@ -33,7 +33,7 @@ public class LivreServiceDao implements LivreDao {
 			if (li != null) {
 				System.out.println("Titre: " + li.getTitre() + " / Auteur: " + li.getAuteur());
 			} else
-				System.out.println("NOT FOUND !");
+				System.err.println("LIVRE NOT FOUND !");
 
 		} finally {
 			if (em != null) {
@@ -63,13 +63,12 @@ public class LivreServiceDao implements LivreDao {
 			if (liMod != null) {
 				liMod.setTitre(newLivre.getTitre());
 				em.merge(liMod);
+				em.getTransaction().commit();
 				System.out.println("Update livre id:" + liMod.getId());
 
 			} else {
 				em.getTransaction().rollback();
 			}
-
-			em.getTransaction().commit();
 
 		} finally {
 			if (em != null) {

@@ -23,6 +23,15 @@ public class Banque {
 		clients = new HashSet<>();
 	}
 	
+	
+	
+	public Banque(String nom) {
+		this();
+		this.nom = nom;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

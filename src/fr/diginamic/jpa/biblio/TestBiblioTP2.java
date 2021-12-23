@@ -1,16 +1,10 @@
 package fr.diginamic.jpa.biblio;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
-import fr.diginamic.jpa.biblio.connexion.ConnexionBddJpa;
 import fr.diginamic.jpa.biblio.dao.LivreDao;
-import fr.diginamic.jpa.biblio.dao.impl.LivreServiceDao;
-import fr.diginamic.jpa.biblio.model.Livre;
+import fr.diginamic.jpa.biblio.dao.impl.LivreDaoImpl;
+import fr.diginamic.jpa.connexion.ConnexionBddJpa;
 
 public class TestBiblioTP2 {
 
@@ -21,7 +15,7 @@ public class TestBiblioTP2 {
 			efm = ConnexionBddJpa.getConnexionJpa();
 			
 			
-			LivreDao ls = new LivreServiceDao();
+			LivreDao ls = new LivreDaoImpl();
 			
 			//FIND BY ID
 			//ls.findLivreById(efm, 7);

@@ -30,7 +30,7 @@ public class EmpruntDaoImpl implements EmpruntDao {
 			if (empr != null) {
 				empr.getEmpLivres().stream().forEach(l -> System.out.println(l));
 			} else
-				System.out.println("Emprunt non trouvé !");
+				System.err.println("Emprunt non trouvé !");
 
 		} finally {
 			if (em != null) {
@@ -56,7 +56,7 @@ public class EmpruntDaoImpl implements EmpruntDao {
 			if (cl != null) {
 				cl.getEmprunts().stream().forEach(e -> System.out.println(e));
 			} else
-				System.out.println("Client non trouvé !");
+				System.err.println("CLIENT NOT FOUND !");
 
 		} finally {
 			if (em != null) {
