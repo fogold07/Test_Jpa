@@ -86,5 +86,45 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
+	
+		<persistence-unit name="banqueTest"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>fr.diginamic.jpa.banque.model.Banque</class>
+		<class>fr.diginamic.jpa.banque.model.Client</class>
+		<class>fr.diginamic.jpa.banque.model.Compte</class>
+		<class>fr.diginamic.jpa.banque.model.Operation</class>
+		<class>fr.diginamic.jpa.banque.model.LivretA</class>
+		<class>fr.diginamic.jpa.banque.model.AssuranceVie</class>
+		<class>fr.diginamic.jpa.banque.model.Virement</class>
+
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<!-- desactiver l'autodetection des classes de type @Entity -->
+			<!-- <property name="hibernate.archive.autodetection" value="" />  -->
+			
+			
+			<!-- Drop and create à chaque redémarrage -->
+			  
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+
+			<!-- Paramètres d'accès à la BDD -->
+			<property name="javax.persistence.jdbc.driver"
+				value="org.mariadb.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mariadb://localhost:3306/banquetest" />
+			<property name="javax.persistence.jdbc.user" value="usr01" />
+			<property name="javax.persistence.jdbc.password" value="usr01" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+			<!-- Affichage des requêtes SQL -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
 
 </persistence>

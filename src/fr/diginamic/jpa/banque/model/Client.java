@@ -37,6 +37,49 @@ public class Client {
 
 	}
 
+	
+	public Client(String nom, String prenom) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+
+	
+
+	public Client(String nom, String prenom, LocalDate dateNaissance) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+	}
+
+
+	public Client(String nom, String prenom, LocalDate dateNaissance, Adresse adresse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + "]";
+	}
+
+
+	public Client(String nom, String prenom, LocalDate dateNaissance, Adresse adresse, Banque banqueClient) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
+		this.banqueClient = banqueClient;
+	}
+
+
 	public int getId() {
 		return id;
 	}

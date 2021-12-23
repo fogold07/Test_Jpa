@@ -28,7 +28,7 @@ public class LivretAServiceImpl implements LivretAService {
 			la.getCpteClients().add(cl);
 			em.persist(la);
 		} else {
-			System.out.println("Client non trouvé!");
+			System.err.println("Client non trouvé!");
 		}
 		em.getTransaction().commit();
 		

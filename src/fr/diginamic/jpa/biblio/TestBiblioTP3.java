@@ -2,9 +2,9 @@ package fr.diginamic.jpa.biblio;
 
 import javax.persistence.EntityManagerFactory;
 
-import fr.diginamic.jpa.biblio.connexion.ConnexionBddJpa;
 import fr.diginamic.jpa.biblio.dao.EmpruntDao;
 import fr.diginamic.jpa.biblio.dao.impl.EmpruntDaoImpl;
+import fr.diginamic.jpa.connexion.ConnexionBddJpa;
 
 /**
  * Classe qui permet d'extraire pour un emprunt la liste de tous ses livres associés, 
