@@ -1,31 +1,52 @@
-package fr.diginamic.jpa.model;
+package fr.diginamic.jpa.biblio.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 
-
+/**
+* Classe qui fait le lien avec la table Livre dans la BdD.
+ * 
+ * @author Christian Ingold
+ *
+ */
 @Entity
 @Table(name = "LIVRE")
 public class Livre {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "TITRE")
-	private String titre; 
-	
+	private String titre;
+
 	@Column(name = "AUTEUR", length = 50)
 	private String auteur;
-	
+
 	@ManyToMany(mappedBy = "empLivres")
 	private Set<Emprunt> livEmprunts;
-	
+
 	public Livre() {
 		livEmprunts = new HashSet<>();
 	}
+
+	
+	
+	public Livre(String titre) {
+		super();
+		this.titre = titre;
+	}
+
+
+
+	public Livre(String titre, String auteur) {
+		super();
+		this.titre = titre;
+		this.auteur = auteur;
+	}
+
 
 	public Set<Emprunt> getLivEmprunts() {
 		return livEmprunts;
@@ -64,5 +85,4 @@ public class Livre {
 		return "Livre [id= " + id + ", titre= " + titre + ", auteur= " + auteur + "]";
 	}
 
-	
 }

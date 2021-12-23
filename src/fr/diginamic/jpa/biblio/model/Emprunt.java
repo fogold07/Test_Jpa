@@ -1,4 +1,4 @@
-package fr.diginamic.jpa.model;
+package fr.diginamic.jpa.biblio.model;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -6,6 +6,13 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+/**
+ * Classe qui fait le lien avec la table Emprunt dans la BdD.
+ * 
+ * @author Christian Ingold
+ *
+ */
+ 
 @Entity
 @Table(name = "EMPRUNT")
 public class Emprunt {
