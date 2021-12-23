@@ -57,9 +57,9 @@ public class CompteServiceImpl implements CompteService {
 	/**
 	 * Methode qui affecte un compte a un client.
 	 * 
-	 * @param efm      as EntityManagerFactory
-	 * @param cl as Client
-	 * @param cpt      as Compte
+	 * @param efm as EntityManagerFactory
+	 * @param cl  as Client
+	 * @param cpt as Compte
 	 * @return Compte
 	 */
 	@Override
@@ -68,18 +68,18 @@ public class CompteServiceImpl implements CompteService {
 		try {
 			em = efm.createEntityManager();
 			em.getTransaction().begin();
-			//Client c = em.find(Client.class, cl.getId());
-			//if (c != null) {
-				cpt.getCpteClients().add(cl);
-				em.merge(cpt);
-				em.getTransaction().commit();
-				return cpt;
+			// Client c = em.find(Client.class, cl.getId());
+			// if (c != null) {
+			cpt.getCpteClients().add(cl);
+			em.merge(cpt);
+			em.getTransaction().commit();
+			return cpt;
 //			} else {
 //				System.err.println("Client non trouvé!");
 //				em.getTransaction().rollback();
-				//return null;
+			// return null;
 
-			//}
+			// }
 		} finally {
 			if (em != null)
 				em.close();
