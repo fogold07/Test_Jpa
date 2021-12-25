@@ -13,11 +13,11 @@ public class LivretA extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LivretA(Double taux) {
-		super();
+
+	public LivretA(String numero, Double solde, Double taux) {
+		super(numero, solde);
 		this.taux = taux;
 	}
-
 	public Double getTaux() {
 		return taux;
 	}

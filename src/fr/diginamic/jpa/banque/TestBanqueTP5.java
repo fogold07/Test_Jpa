@@ -4,10 +4,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 
+import fr.diginamic.jpa.banque.dao.BanqueDao;
+import fr.diginamic.jpa.banque.dao.ClientDao;
+import fr.diginamic.jpa.banque.dao.CompteDao;
+import fr.diginamic.jpa.banque.dao.OperationDao;
+import fr.diginamic.jpa.banque.dao.impl.BanqueDaoImpl;
+import fr.diginamic.jpa.banque.dao.impl.ClientDaoImpl;
+import fr.diginamic.jpa.banque.dao.impl.CompteDaoImpl;
+import fr.diginamic.jpa.banque.dao.impl.OperationDaoImpl;
 import fr.diginamic.jpa.banque.model.Adresse;
 import fr.diginamic.jpa.banque.model.AssuranceVie;
 import fr.diginamic.jpa.banque.model.Banque;
@@ -18,302 +24,100 @@ import fr.diginamic.jpa.banque.model.Operation;
 import fr.diginamic.jpa.banque.model.Virement;
 import fr.diginamic.jpa.connexion.ConnexionBddJpa;
 
-
 /**
  * Classe qui execute le TP5
+ * 
  * @author Christian Ingold
  *
  */
 public class TestBanqueTP5 {
 
 	public static void main(String[] args) {
-		
+
 		EntityManagerFactory efm = null;
 
+		BanqueDao bq = new BanqueDaoImpl();
+		ClientDao cs = new ClientDaoImpl();
+		CompteDao cps = new CompteDaoImpl();
+		OperationDao ops = new OperationDaoImpl();
+
 		try {
-			efm = ConnexionBddJpa.getConnexionJpa("banqueTest");;
+			efm = ConnexionBddJpa.getConnexionJpa("banqueTest");
 
-			
-			/*
-			 * Insertion d'un compte associé à 2 clients 
-			 **/
-			
-						
-			// Creation client 2
-			String nom ="GIDE-MARIE";
-			String prenom = "Fabienne";
-			LocalDate dateNaissance = LocalDate.of(1986, Month.SEPTEMBER, 25);
-			
-			//Création adresse
-			int num = 15;
-			String rue ="Pierre Marie Curry";
-			int cp = 75000;
-			String ville = "Paris";
-			Adresse adr = creerAdresse(num, rue, cp, ville);
-			
-			//creerClient(em, nom, prenom, dateNaissance, adr);
 
-			
-			// Creation compte associé à 2 clients
-			/*
-			Compte cp = new Compte();
-			Client c = em.find(Client.class, 3);
-			Client c2 = em.find(Client.class, 4);
-			if(c!=null && c2!=null) {
-				cp.getCpteClients().add(c);
-				cp.getCpteClients().add(c2);
-				cp.setNumero("0011223344");
-				cp.setSolde(4500.50);
-				em.persist(cp);
-			}
-			*/
-			
-			/*
-			 * Insérer un client avec plusieurs comptes
-			 **/
-			
-			String numLA ="55667788LA";
-			Double solde = 2500.00;
-			Double tx = 0.01;
-			
-			String numAV = "55667788AV";
-			Double soldeAV = 7000.00;
-			Double txAV = 0.05;		
-			LocalDate dateFin = LocalDate.of(2045, Month.JUNE, 30);
-			
-			int idClient = 2;
-			
-			//creerLivretA(em, idClient, numLA, solde, tx);
-			//creerAssuranceVie(em, idClient, numAV, soldeAV, txAV, dateFin);
-			
-			/*
-			 * Insertion opération de type virement
-			 */
-			int idCpt = 5;
-			LocalDateTime date = LocalDateTime.now();
-			Double montant = 5500.00;
-			String motif = "Prime Risque";
-			String benef = "Toto";
-			//creerVirement(em, idCpt, date, montant, motif, benef);
-			
-			/*
-			 * Insertion opération de type opération
-			 */
-			
-			int idCpt2 = 5;
-			LocalDateTime date2 = LocalDateTime.now();
-			Double montant2 = 5500.00;
-			String motif2 = "Prime Risque";
-			
-			//creerOperation(em, idCpt2, date2, montant2, motif2);
+			// COMPTE ASSOCIE A DEUX CLIENTS
+			// CREATE BANQUE
+			Banque banque = bq.creerBanque(efm, new Banque("Crédit Mutuel"));
+			System.out.println(banque);
 
-			em.close();
+			// CREATE CLIENT
+			Adresse adr = new Adresse(4, "Rue Victor Hugo", 91000, "Evry");
+			Client clientA = cs.creerClientDansBanque(efm,
+					new Client("RICHARD", "Emmanuel", LocalDate.of(1996, Month.DECEMBER, 17), adr), banque);
+			Client clientB = cs.creerClientDansBanque(efm,
+					new Client("RICHARD-DUPONT", "Uranie", LocalDate.of(1998, Month.JANUARY, 27), adr), banque);
+
+			Compte cptJoint = cps.creerAffecterCompteJoint(efm, clientA, clientB, new Compte("CJ11223344", 3500.00));
+			System.out.println(cptJoint + " rattaché au " + cptJoint.getCpteClients());
+
+			// CREATE LIVRET A ET ASSURANCE VIE LIES A UN CLIENT
+			Adresse adrC = new Adresse(485, "Rue Pierre et Marie Curry", 75000, "Paris");
+			Client clientC = cs.creerClientDansBanque(efm,
+					new Client("KONG", "King", LocalDate.of(1988, Month.JUNE, 4), adrC), banque);
+			LivretA livret = cps.creerLivretA(efm, clientC, new LivretA("LA00011122", 5000.00, 0.01));
+			AssuranceVie ass = cps.creerAssuranceVie(efm, clientC,
+					new AssuranceVie("AV00000002", 3000.0, LocalDate.of(2045, Month.SEPTEMBER, 30), 0.05));
+			System.out.println(livret);
+			System.out.println(ass);
+
+			// CREATE OPERATIONS DE TYPE VIREMENT
+			Virement virA = ops.creerVirement(efm, cptJoint,
+					new Virement(LocalDateTime.now(), 1000.00, "Achat TV", "DARTY"));
+			System.out.println(virA);
+			System.out.println("Solde après operation (" + virA.getMotif() + ") : " + cptJoint.getSolde()
+					+ " € sur compte n° " + cptJoint.getNumero());
+
+			Virement virB = ops.creerVirement(efm, livret,
+					new Virement(LocalDateTime.now(), 5000.00, "Travaux isolation", "Martin SARL"));
+			System.out.println(virB);
+			System.out.println("Solde après operation (" + virB.getMotif() + ") : " + livret.getSolde()
+					+ " € sur compte n° " + livret.getNumero());
+
+			// CREATE OPERATIONS DE TYPE OPERATION
+			// OPERATIONS CREDITEURS - DEBITEURS SUR ASSURANCE VIE
+
+			Operation opAssA = ops.creerOperation(efm, ass,
+					new Operation(LocalDateTime.now(), 1000.00, "Appro Assurance"));
+			System.out.println(opAssA);
+			System.out.println("Solde après operation (" + opAssA.getMotif() + ") : " + ass.getSolde()
+					+ " € sur compte n° " + ass.getNumero());
+
+			Operation opAssB = ops.creerOperation(efm, ass,
+					new Operation(LocalDateTime.now(), -4000.00, "Debit Assurance"));
+			System.out.println(opAssB);
+			System.out.println("Solde après operation (" + opAssB.getMotif() + ") : " + ass.getSolde()
+					+ " € sur compte n° " + ass.getNumero());
+
+			// OPERATIONS CREDITEURS - DEBITEURS SUR LIVRET A
+			Operation opLivA = ops.creerOperation(efm, livret,
+					new Operation(LocalDateTime.now(), 2000.00, "Appro LivretA"));
+			System.out.println(opLivA);
+			System.out.println("Solde après operation (" + opLivA.getMotif() + ") : " + livret.getSolde()
+					+ " € sur compte n° " + livret.getNumero());
+
+			Operation opLivB = ops.creerOperation(efm, livret,
+					new Operation(LocalDateTime.now(), -2000.00, "Appro LivretA"));
+			System.out.println(opLivB);
+			System.out.println("Solde après operation (" + opLivB.getMotif() + ") : " + livret.getSolde()
+					+ " € sur compte n° " + livret.getNumero());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (efm != null)
+				efm.close();
 		}
 
-		
-    	catch(Exception e) {e.printStackTrace();}
-    	finally {
-    		if(efm != null) efm.close();
-    	}
-		
-
 	}
 
-	
-	/**
-	 * Méthode qui créé une opération sur un compte.
-	 * - type débit = solde négatif;
-	 * - type crédit = solde positif.
-	 * @param em
-	 * @param idCpt
-	 * @param date
-	 * @param montant
-	 * @param motif
-	 */
-	//new Operation(date, montant, motif) --> fait sauter op.setter stdr
-	//creerOperation(em, idCpt, new operation(date, montant, motif))
-	private static void creerOperation(EntityManager em, int idCpt, LocalDateTime date, Double montant, String motif) {
-		em.getTransaction().begin();
-		Compte cp = em.find(Compte.class, idCpt);
-		if(cp!=null) {
-			//Verification solde 
-			if(cp.getSolde() + montant > 0) {
-				//creation opération
-				Operation op = new Operation();
-				op.setOpCompte(cp);
-				op.setDate(date);
-				op.setMontant(montant);
-				op.setMotif(motif);
-				em.persist(op);
-				
-				//mise à jour solde
-				Double nvSolde = cp.getSolde() + montant;
-				cp.setSolde(nvSolde);
-				
-				em.merge(cp);
-				
-			} else {
-				System.out.println("Solde insuffisant : " + cp.getSolde() + " € !");
-			}
-		} else {
-			System.out.println("Compte non trouvé!");
-		}
-		em.getTransaction().commit();
-		
-	}
-
-	/**
-	 * Méthode qui créé une opération de type virement sur un compte.
-	 * @param em
-	 * @param idCpt
-	 * @param date
-	 * @param montant
-	 * @param motif
-	 * @param benef
-	 */
-	/*
-	private static void creerVirement(EntityManager em, int idCpt, LocalDateTime date, Double montant, String motif, String benef) {
-		em.getTransaction().begin();
-		Compte cp = em.find(Compte.class, idCpt);
-		if(cp!=null) {
-			//Verification solde
-			if(cp.getSolde() - montant > 0) {
-				//creation virement
-				Virement v = new Virement();
-				v.setOpCompte(cp);
-				v.setDate(date);
-				v.setMontant(montant);
-				v.setMotif(motif);
-				v.setBeneficiaire(benef);
-				em.persist(v);
-				
-				//mise à jour solde
-				Double nvSolde = cp.getSolde() - montant;
-				cp.setSolde(nvSolde);
-				
-				em.merge(cp);
-				
-			} else {
-				System.out.println("Solde insuffisant : " + cp.getSolde() + " € !");
-			}
-		} else {
-			System.out.println("Compte non trouvé!");
-		}
-		em.getTransaction().commit();
-	}
-*/
-
-	/**
-	 * Méthode qui créé une assurance vie pour un client.
-	 * @param em
-	 * @param idClient
-	 * @param num
-	 * @param solde
-	 * @param tx
-	 * @param dateFin
-	 */
-	/*
-	private static void creerAssuranceVie(EntityManager em, int idClient, String num, Double solde, Double tx, LocalDate dateFin) {
-		em.getTransaction().begin();
-		Client cl = em.find(Client.class, idClient);
-		if(cl!=null) {
-			AssuranceVie av = new AssuranceVie();
-			av.setNumero(num);
-			av.setSolde(solde);
-			av.setTaux(tx);
-			av.setDateFin(dateFin);
-			av.getCpteClients().add(cl);
-			em.persist(av);
-		} else {
-			System.out.println("Client non trouvé!");
-		}
-		em.getTransaction().commit();
-		
-	}
-*/
-
-	/**
-	 * Méthode qui créé un compte de type livret A pour un client.
-	 * @param em
-	 * @param idClient
-	 * @param num
-	 * @param solde
-	 * @param tx
-	 */
-	/*
-	private static void creerLivretA(EntityManager em,int idClient, String num, Double solde, Double tx) {
-		em.getTransaction().begin();
-		Client cl = em.find(Client.class, idClient);
-		if(cl!=null) {
-			LivretA la = new LivretA();
-			la.setNumero(num);
-			la.setSolde(solde);
-			la.setTaux(tx);
-			la.getCpteClients().add(cl);
-			em.persist(la);
-		} else {
-			System.out.println("Client non trouvé!");
-		}
-		em.getTransaction().commit();
-		
-	}
-*/
-
-	/**
-	 * Méthode qui crée un client, après avoir créé au préalable la banque.
-	 * @param em
-	 * @param nom
-	 * @param prenom
-	 * @param dateNaissance
-	 * @param adr
-	 *//*	private static void creerClient(EntityManager em, String nom, String prenom, LocalDate dateNaissance, Adresse adr) {
-		em.getTransaction().begin();
-		//Get Banque
-		Banque bq = em.find(Banque.class, 1);
-		if(bq!=null) {
-		Client client = new Client();
-		client.setNom(nom);
-		client.setPrenom(prenom);
-		client.setDateNaissance(dateNaissance);
-		client.setAdresse(adr);
-		client.setBanqueClient(bq);
-		em.persist(client);
-		} else {
-			System.out.println("Banque non trouvée!");
-		}
-		em.getTransaction().commit();
-	}
-*/
-	/**
-	 * Méthode qui crée un Embadded de l'adresse
-	 * @param num
-	 * @param rue
-	 * @param cp
-	 * @param ville
-	 * @return adresse
-	 */
-	/*
-	private static Adresse creerAdresse(int num, String rue, int cp, String ville) {
-		Adresse adresse = new Adresse();
-		adresse.setNumero(num);
-		adresse.setRue(rue);
-		adresse.setCodePostal(cp);
-		adresse.setVille(ville);
-		return adresse;
-	}
-*/
-	/**
-	 * Méthode qui crée une banque
-	 * @param em
-	 * @param nom
-	 */
-	/*
-	private static void creerBanqueUnique(EntityManager em, String nom) {
-		em.getTransaction().begin();
-		Banque bq = new Banque();
-		bq.setNom(nom);
-		em.persist(bq);
-		em.getTransaction().commit();
-	}
-*/
 }

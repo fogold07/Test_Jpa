@@ -1,5 +1,7 @@
 package fr.diginamic.jpa.banque.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,15 @@ public class Virement extends Operation {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	public Virement(LocalDateTime date, Double montant, String motif, String beneficiaire) {
+		super(date, montant, motif);
+		this.beneficiaire = beneficiaire;
+	}
+
+
+
 	public String getBeneficiaire() {
 		return beneficiaire;
 	}
@@ -21,4 +32,16 @@ public class Virement extends Operation {
 		this.beneficiaire = beneficiaire;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Virement [id: "+ getId() + ", date: "+ getDate() +", montant: "+ getMontant() +" €, beneficiaire: "+ getBeneficiaire() +", motif: " + getMotif()+" ]";
+	}
+
+
+
+
+
+	
 }
