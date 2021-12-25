@@ -48,68 +48,38 @@ public class TestBanqueTP5 {
 			// COMPTE ASSOCIE A DEUX CLIENTS
 			// CREATE BANQUE
 			Banque banque = bq.creerBanque(efm, new Banque("Crédit Mutuel"));
-			System.out.println(banque);
 
 			// CREATE CLIENT
 			Adresse adr = new Adresse(4, "Rue Victor Hugo", 91000, "Evry");
-			Client clientA = cs.creerClientDansBanque(efm,
-					new Client("RICHARD", "Emmanuel", LocalDate.of(1996, Month.DECEMBER, 17), adr), banque);
-			Client clientB = cs.creerClientDansBanque(efm,
-					new Client("RICHARD-DUPONT", "Uranie", LocalDate.of(1998, Month.JANUARY, 27), adr), banque);
+			Client clientA = cs.creerClientDansBanque(efm, new Client("RICHARD", "Emmanuel", LocalDate.of(1996, Month.DECEMBER, 17), adr), banque);
+			Client clientB = cs.creerClientDansBanque(efm, new Client("RICHARD-DUPONT", "Uranie", LocalDate.of(1998, Month.JANUARY, 27), adr), banque);
 
 			Compte cptJoint = cps.creerAffecterCompteJoint(efm, clientA, clientB, new Compte("CJ11223344", 3500.00));
-			System.out.println(cptJoint + " rattaché au " + cptJoint.getCpteClients());
 
 			// CREATE LIVRET A ET ASSURANCE VIE LIES A UN CLIENT
 			Adresse adrC = new Adresse(485, "Rue Pierre et Marie Curry", 75000, "Paris");
-			Client clientC = cs.creerClientDansBanque(efm,
-					new Client("KONG", "King", LocalDate.of(1988, Month.JUNE, 4), adrC), banque);
+			Client clientC = cs.creerClientDansBanque(efm, new Client("KONG", "King", LocalDate.of(1988, Month.JUNE, 4), adrC), banque);
 			LivretA livret = cps.creerLivretA(efm, clientC, new LivretA("LA00011122", 5000.00, 0.01));
-			AssuranceVie ass = cps.creerAssuranceVie(efm, clientC,
-					new AssuranceVie("AV00000002", 3000.0, LocalDate.of(2045, Month.SEPTEMBER, 30), 0.05));
-			System.out.println(livret);
-			System.out.println(ass);
+			AssuranceVie ass = cps.creerAssuranceVie(efm, clientC, new AssuranceVie("AV00000002", 3000.0, LocalDate.of(2045, Month.SEPTEMBER, 30), 0.05));
 
 			// CREATE OPERATIONS DE TYPE VIREMENT
-			Virement virA = ops.creerVirement(efm, cptJoint,
-					new Virement(LocalDateTime.now(), 1000.00, "Achat TV", "DARTY"));
-			System.out.println(virA);
-			System.out.println("Solde après operation (" + virA.getMotif() + ") : " + cptJoint.getSolde()
-					+ " € sur compte n° " + cptJoint.getNumero());
+			Virement virA = ops.creerVirement(efm, cptJoint, new Virement(LocalDateTime.now(), 1000.00, "Achat TV", "DARTY"));
+			
+			Virement virB = ops.creerVirement(efm, livret, new Virement(LocalDateTime.now(), 5000.00, "Travaux isolation", "Martin SARL"));
 
-			Virement virB = ops.creerVirement(efm, livret,
-					new Virement(LocalDateTime.now(), 5000.00, "Travaux isolation", "Martin SARL"));
-			System.out.println(virB);
-			System.out.println("Solde après operation (" + virB.getMotif() + ") : " + livret.getSolde()
-					+ " € sur compte n° " + livret.getNumero());
 
 			// CREATE OPERATIONS DE TYPE OPERATION
 			// OPERATIONS CREDITEURS - DEBITEURS SUR ASSURANCE VIE
 
-			Operation opAssA = ops.creerOperation(efm, ass,
-					new Operation(LocalDateTime.now(), 1000.00, "Appro Assurance"));
-			System.out.println(opAssA);
-			System.out.println("Solde après operation (" + opAssA.getMotif() + ") : " + ass.getSolde()
-					+ " € sur compte n° " + ass.getNumero());
+			Operation opAssA = ops.creerOperation(efm, ass, new Operation(LocalDateTime.now(), 1000.00, "Appro Assurance"));
 
-			Operation opAssB = ops.creerOperation(efm, ass,
-					new Operation(LocalDateTime.now(), -4000.00, "Debit Assurance"));
-			System.out.println(opAssB);
-			System.out.println("Solde après operation (" + opAssB.getMotif() + ") : " + ass.getSolde()
-					+ " € sur compte n° " + ass.getNumero());
+			Operation opAssB = ops.creerOperation(efm, ass, new Operation(LocalDateTime.now(), -4000.00, "Debit Assurance"));
 
 			// OPERATIONS CREDITEURS - DEBITEURS SUR LIVRET A
-			Operation opLivA = ops.creerOperation(efm, livret,
-					new Operation(LocalDateTime.now(), 2000.00, "Appro LivretA"));
-			System.out.println(opLivA);
-			System.out.println("Solde après operation (" + opLivA.getMotif() + ") : " + livret.getSolde()
-					+ " € sur compte n° " + livret.getNumero());
+			Operation opLivA = ops.creerOperation(efm, livret, new Operation(LocalDateTime.now(), 2000.00, "Appro LivretA"));
 
-			Operation opLivB = ops.creerOperation(efm, livret,
-					new Operation(LocalDateTime.now(), -2000.00, "Appro LivretA"));
-			System.out.println(opLivB);
-			System.out.println("Solde après operation (" + opLivB.getMotif() + ") : " + livret.getSolde()
-					+ " € sur compte n° " + livret.getNumero());
+			Operation opLivB = ops.creerOperation(efm, livret, new Operation(LocalDateTime.now(), -2000.00, "Appro LivretA"));
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
