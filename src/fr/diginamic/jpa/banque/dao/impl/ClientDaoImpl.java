@@ -1,16 +1,16 @@
-package fr.diginamic.jpa.banque.service.impl;
+package fr.diginamic.jpa.banque.dao.impl;
 
 import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import fr.diginamic.jpa.banque.dao.ClientDao;
 import fr.diginamic.jpa.banque.model.Adresse;
 import fr.diginamic.jpa.banque.model.Banque;
 import fr.diginamic.jpa.banque.model.Client;
-import fr.diginamic.jpa.banque.service.ClientService;
 
-public class ClientServiceImpl implements ClientService {
+public class ClientDaoImpl implements ClientDao {
 
 	// ISSU TP5
 	/**
@@ -65,49 +65,27 @@ public class ClientServiceImpl implements ClientService {
 
 	}
 
+// REFECTORING TP 04
 	/**
-	 * Methode qui cree un client.
+	 * Methode qui affecte cree un client dans une banque.
 	 * 
 	 * @param efm as EntityManagerFactory
-	 * @param c   as Client
+	 * @param client   as Client
+	 * @param banque  as Banque
 	 * @return Client
 	 */
 	@Override
-	public Client creerClient(EntityManagerFactory efm, Client c) {
+	public Client creerClientDansBanque(EntityManagerFactory efm, Client client, Banque banque) {
 		EntityManager em = null;
 		try {
 			em = efm.createEntityManager();
 			em.getTransaction().begin();
-			em.persist(c);
-			em.getTransaction().commit();
-			return c;
-		} finally {
-			if (em != null)
-				em.close();
-		}
-	}
-
-	/**
-	 * Methode qui affecte une banque a un client.
-	 * 
-	 * @param efm as EntityManagerFactory
-	 * @param c   as Client
-	 * @param id  as int
-	 * @return Client
-	 * 
-	 */
-	@Override
-	public Client affecterBanque(EntityManagerFactory efm, Client c, int id) {
-		EntityManager em = null;
-		try {
-			em = efm.createEntityManager();
-			em.getTransaction().begin();
-			Banque b = em.find(Banque.class, id);
+			Banque b = em.find(Banque.class, banque.getId());
 			if (b != null) {
-				c.setBanqueClient(b);
-				em.merge(c);
+				client.setBanqueClient(b);
+				em.persist(client);
 				em.getTransaction().commit();
-				return c;
+				return client;
 			} else {
 				System.err.println("Banque non trouvée!");
 				em.getTransaction().rollback();

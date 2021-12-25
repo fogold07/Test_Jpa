@@ -1,11 +1,10 @@
-package fr.diginamic.jpa.banque.service;
+package fr.diginamic.jpa.banque.dao;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import fr.diginamic.jpa.banque.model.Banque;
 
-public interface BanqueService {
+public interface BanqueDao {
 
 	int creerBanqueUnique(EntityManagerFactory efm, String nom);
 	

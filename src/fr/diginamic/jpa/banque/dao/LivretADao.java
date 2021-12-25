@@ -1,8 +1,8 @@
-package fr.diginamic.jpa.banque.service;
+package fr.diginamic.jpa.banque.dao;
 
 import javax.persistence.EntityManager;
 
-public interface LivretAService {
+public interface LivretADao {
 
 	void creerLivretA(EntityManager em,int idClient, String num, Double solde, Double tx);
 }

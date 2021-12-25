@@ -1,4 +1,4 @@
-package fr.diginamic.jpa.banque.service;
+package fr.diginamic.jpa.banque.dao;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -7,14 +7,11 @@ import fr.diginamic.jpa.banque.model.Client;
 import fr.diginamic.jpa.banque.model.Compte;
 import fr.diginamic.jpa.banque.model.LivretA;
 
-public interface CompteService {
+public interface CompteDao {
 
 	// RELATIF TP 4
-	//Compte creerCompte(EntityManagerFactory efm, Client cl, Compte cpt);
+	Compte creerAffecterCompte(EntityManagerFactory efm, Client cl, Compte cpt);
 	
-	Compte creerCompte(EntityManagerFactory efm, Compte cpt);
-	
-	Compte affecterClient(EntityManagerFactory efm, Client cl, Compte cpt);
 	
 	AssuranceVie creerAssuranceVie(EntityManagerFactory efm, Client cl, AssuranceVie av);
 	

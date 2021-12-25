@@ -32,6 +32,17 @@ public class Operation {
 	public Operation() {
 	}
 
+	
+	
+	public Operation(LocalDateTime date, Double montant, String motif) {
+		super();
+		this.date = date;
+		this.montant = montant;
+		this.motif = motif;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -70,6 +81,13 @@ public class Operation {
 
 	public void setOpCompte(Compte opCompte) {
 		this.opCompte = opCompte;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Operation [id=" + id + ", date=" + date + ", montant=" + montant + ", motif=" + motif + "]";
 	}
 
 	

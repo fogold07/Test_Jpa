@@ -16,7 +16,6 @@ import fr.diginamic.jpa.banque.model.Compte;
 import fr.diginamic.jpa.banque.model.LivretA;
 import fr.diginamic.jpa.banque.model.Operation;
 import fr.diginamic.jpa.banque.model.Virement;
-import fr.diginamic.jpa.connexion.ConnexionBddJpa;
 
 
 /**
@@ -24,15 +23,15 @@ import fr.diginamic.jpa.connexion.ConnexionBddJpa;
  * @author Christian Ingold
  *
  */
-public class TestBanqueTP5 {
+public class TestBanqueTP5Draft {
 
 	public static void main(String[] args) {
 		
 		EntityManagerFactory efm = null;
-
+		EntityManager em = null;
 		try {
-			efm = ConnexionBddJpa.getConnexionJpa("banqueTest");;
-
+			efm = Persistence.createEntityManagerFactory("banque");
+			em = efm.createEntityManager();
 			
 			/*
 			 * Insertion d'un compte associé à 2 clients 

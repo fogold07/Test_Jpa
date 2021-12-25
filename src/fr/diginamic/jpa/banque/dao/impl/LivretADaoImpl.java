@@ -1,12 +1,12 @@
-package fr.diginamic.jpa.banque.service.impl;
+package fr.diginamic.jpa.banque.dao.impl;
 
 import javax.persistence.EntityManager;
 
+import fr.diginamic.jpa.banque.dao.LivretADao;
 import fr.diginamic.jpa.banque.model.Client;
 import fr.diginamic.jpa.banque.model.LivretA;
-import fr.diginamic.jpa.banque.service.LivretAService;
 
-public class LivretAServiceImpl implements LivretAService {
+public class LivretADaoImpl implements LivretADao {
 	
 	/**
 	 * Méthode qui créé un compte de type livret A pour un client.

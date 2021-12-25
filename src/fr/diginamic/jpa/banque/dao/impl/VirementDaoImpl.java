@@ -1,13 +1,14 @@
-package fr.diginamic.jpa.banque.service.impl;
+package fr.diginamic.jpa.banque.dao.impl;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 
+import fr.diginamic.jpa.banque.dao.VirementDao;
 import fr.diginamic.jpa.banque.model.Compte;
 import fr.diginamic.jpa.banque.model.Virement;
 
-public class VirementService implements fr.diginamic.jpa.banque.service.VirementService {
+public class VirementDaoImpl implements VirementDao {
 
 	/**
 	 * Méthode qui créé une opération de type virement sur un compte.

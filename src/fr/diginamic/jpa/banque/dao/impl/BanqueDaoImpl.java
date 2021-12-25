@@ -1,11 +1,11 @@
-package fr.diginamic.jpa.banque.service.impl;
+package fr.diginamic.jpa.banque.dao.impl;
 
 import javax.persistence.*;
 
+import fr.diginamic.jpa.banque.dao.BanqueDao;
 import fr.diginamic.jpa.banque.model.Banque;
-import fr.diginamic.jpa.banque.service.BanqueService;
 
-public class BanqueServiceImpl implements BanqueService {
+public class BanqueDaoImpl implements BanqueDao {
 
 	/**
 	 * Méthode qui crée une banque

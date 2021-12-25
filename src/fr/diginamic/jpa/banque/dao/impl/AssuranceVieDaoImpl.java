@@ -1,14 +1,14 @@
-package fr.diginamic.jpa.banque.service.impl;
+package fr.diginamic.jpa.banque.dao.impl;
 
 import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 
+import fr.diginamic.jpa.banque.dao.AssuranceVieDao;
 import fr.diginamic.jpa.banque.model.AssuranceVie;
 import fr.diginamic.jpa.banque.model.Client;
-import fr.diginamic.jpa.banque.service.AssuranceVieService;
 
-public class AssuranceVieServiceImpl implements AssuranceVieService {
+public class AssuranceVieDaoImpl implements AssuranceVieDao {
 
 	/**
 	 * Méthode qui créé une assurance vie pour un client.
