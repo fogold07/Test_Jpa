@@ -5,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- * Méthode qui permet de créer une instance EntityManagerFactory et EntityManager.
+ * Classe qui permet de créer une instance EntityManagerFactory et EntityManager.
  * @author Christian Ingold
  *
  */

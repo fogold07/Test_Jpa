@@ -25,7 +25,7 @@ import fr.diginamic.jpa.banque.model.Virement;
 import fr.diginamic.jpa.connexion.ConnexionBddJpa;
 
 /**
- * Classe qui execute le TP5
+ * Classe qui insère en base de données les instances du TP5.
  * 
  * @author Christian Ingold
  *

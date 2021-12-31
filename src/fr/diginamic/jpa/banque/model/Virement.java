@@ -4,6 +4,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+/**
+ * Classe qui définit les attributs de l'entité Virement.
+ * 
+ * @author Christian Ingold
+ *
+ */
 @Entity
 @Table(name="VIREMENT")
 public class Virement extends Operation {
@@ -12,7 +18,6 @@ public class Virement extends Operation {
 	private String beneficiaire;
 	
 	public Virement() {
-		// TODO Auto-generated constructor stub
 	}
 
 	

@@ -6,10 +6,12 @@ import java.util.Set;
 import javax.persistence.*;
 
 
-/*
- * Relatif au TP04
+/**
+ * Classe qui définit les attributs de l'entité Compte.
  * 
- * */
+ * @author Christian Ingold
+ *
+ */
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -36,6 +38,7 @@ public class Compte {
 				inverseJoinColumns = @JoinColumn(name="ID_CLIENT", referencedColumnName ="ID")
 			)
 	private Set<Client> cpteClients;
+	
 	
 	public Compte() {
 		cpteClients = new HashSet<>();

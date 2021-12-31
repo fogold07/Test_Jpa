@@ -8,7 +8,7 @@ import fr.diginamic.jpa.biblio.model.Client;
 import fr.diginamic.jpa.biblio.model.Emprunt;
 
 /**
- * Classe qui definit les differentes methodes CRUD de l'entite Livre.
+ * Classe qui definit les differentes methodes Read de l'entite Livre.
  * 
  * @author Christian Ingold
  *

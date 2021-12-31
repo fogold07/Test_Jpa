@@ -4,7 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
-
+/**
+ * Classe qui définit les attributs de l'entité Client.
+ * 
+ * @author Christian Ingold
+ *
+ */
 @Entity
 @Table(name="CLIENT")
 public class Client {

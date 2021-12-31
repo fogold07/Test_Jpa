@@ -10,7 +10,7 @@ import fr.diginamic.jpa.connexion.ConnexionBddJpa;
  * Classe qui permet d'extraire pour un emprunt la liste de tous ses livres associés, 
  * ainsi que la liste de tous les emprunts d'un client donné.
  * 
- * @author Christian I
+ * @author Christian Iingold
  *
  */
 public class TestBiblioTP3 {

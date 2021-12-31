@@ -3,7 +3,7 @@ package fr.diginamic.jpa.biblio.dao;
 import javax.persistence.EntityManagerFactory;
 
 /**
- * Interface qui definit les differentes methodes CRUD de l'entite Emprunt.
+ * Interface qui definit les differentes methodes Read de l'entite Emprunt.
  * 
  * @author Christian Ingold
  *

@@ -4,7 +4,12 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
-
+/**
+ * Classe qui définit les attributs de l'entité Opération.
+ * 
+ * @author Christian Ingold
+ *
+ */
 @Entity
 @Table(name="OPERATION")
 @Inheritance(strategy = InheritanceType.JOINED)

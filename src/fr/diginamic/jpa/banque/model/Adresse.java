@@ -4,26 +4,32 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/**
+ * 
+ * Classe qui définit les attributs de l'entité embarquée Adresse.
+ * 
+ * @author Christian Ingold
+ * 
+ */
 @Embeddable
 public class Adresse implements Serializable {
 
-	@Column(name="NUMERO")
+	@Column(name = "NUMERO")
 	private int numero;
-	
-	@Column(name="RUE")
+
+	@Column(name = "RUE")
 	private String rue;
-	
-	@Column(name="CODE_POSTAL")
+
+	@Column(name = "CODE_POSTAL")
 	private int codePostal;
-	
-	@Column(name="VILLE")
+
+	@Column(name = "VILLE")
 	private String ville;
-	
+
 	public Adresse() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	
 	public Adresse(int numero, String rue, int codePostal, String ville) {
 		super();
 		this.numero = numero;
@@ -31,7 +37,6 @@ public class Adresse implements Serializable {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
-
 
 	public int getNumero() {
 		return numero;
@@ -64,7 +69,5 @@ public class Adresse implements Serializable {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	
-	
 
 }

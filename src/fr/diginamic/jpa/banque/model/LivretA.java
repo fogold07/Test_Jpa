@@ -2,6 +2,12 @@ package fr.diginamic.jpa.banque.model;
 
 import javax.persistence.*;
 
+/**
+ * Classe qui définit les attributs de l'entité Livret A.
+ * 
+ * @author Christian Ingold
+ *
+ */
 @Entity
 @Table(name="LIVRET_A")
 public class LivretA extends Compte {

@@ -5,6 +5,12 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+/**
+ * Classe qui définit les attributs de l'entité Banque.
+ * 
+ * @author Christian Ingold
+ *
+ */
 @Entity
 @Table(name="BANQUE")
 public class Banque {

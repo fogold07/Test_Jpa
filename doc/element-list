@@ -1,2 +1,10 @@
 fr.diginamic.jpa
-fr.diginamic.jpa.model
+fr.diginamic.jpa.banque
+fr.diginamic.jpa.banque.dao
+fr.diginamic.jpa.banque.dao.impl
+fr.diginamic.jpa.banque.model
+fr.diginamic.jpa.biblio
+fr.diginamic.jpa.biblio.dao
+fr.diginamic.jpa.biblio.dao.impl
+fr.diginamic.jpa.biblio.model
+fr.diginamic.jpa.connexion
